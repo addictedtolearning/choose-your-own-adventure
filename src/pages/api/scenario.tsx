@@ -9,8 +9,8 @@ const openai = new OpenAIApi(configuration);
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     const scenario = {
-      "description": "Your hot air balloon is going too fast!",
-      "options": ["A) Jump out into the lake.", "B) Turn off the burner and try to land the hot air balloon."]
+      "description": "You are invited to clown college in Sydney.",
+      "options": ["A) Accept the invitation and become a clown", "B) Refuse the invitation, and instead become a DJ."]
     }
     res.status(200).json(scenario)
   } else if (req.method === 'POST') {
