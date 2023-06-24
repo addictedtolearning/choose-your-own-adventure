@@ -27,7 +27,7 @@ export default function Home() {
       throw new Error("No scenario?");
     var newScenario = { ...scenario, chosenOption: option }
     var newScenarios = scenarios.slice();
-    newScenarios[scenarios.length - 1] = newScenario;
+    newScenarios[0] = newScenario;
     setScenario(null);
     setScenarios(newScenarios);
 

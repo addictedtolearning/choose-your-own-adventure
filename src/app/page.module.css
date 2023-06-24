@@ -16,9 +16,8 @@
 .scenarioList {
   flex-grow: 1;
   overflow-y: scroll;
-  flex-direction: column;
+  flex-direction: column-reverse;
   display: flex;
-  justify-content: end;
   width: 100%;
 }
 
@@ -36,7 +35,7 @@
 
 .optionButton {
   width: 200px;
-  height: 60px;
+  height: 130px;
   border:solid #d6d6d6 5px;
   padding: 5px;
   transition: 0.2s all;
