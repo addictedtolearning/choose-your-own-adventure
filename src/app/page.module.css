@@ -1,0 +1,71 @@
+.heading {
+  font-size: 100px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+.scenarioList {
+  flex-grow: 1;
+  overflow-y: scroll;
+  flex-direction: column;
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.scenario {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px dotted black;
+  padding: 10px 0px;
+}
+
+.optionButtonList {
+  display: flex;
+  justify-content: center;
+}
+
+.optionButton {
+  width: 200px;
+  height: 60px;
+  border:solid #d6d6d6 5px;
+  padding: 5px;
+  transition: 0.2s all;
+}
+
+.optionButton:not(:disabled):hover {
+  border:solid #333 5px;
+}
+
+.optionButtonSelected {
+  border:solid #333 5px;
+}
+
+.optionButton:disabled{
+  color:black;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .heading {
+    font-size: 50px;
+  }
+
+  .main {
+    padding: 1rem;
+  }
+
+  .bigButton {
+    font-size: 40px;
+    padding: 10px;
+  }
+}

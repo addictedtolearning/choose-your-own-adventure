@@ -1,0 +1,24 @@
+.letterButton {
+    background: #eee;
+    width: 70px;
+    height: 70px;
+    border: solid 1px #aaa;
+    font-size: 70px;
+    transition: all 0.2s;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 5px;
+    border-radius: 8px;
+}
+
+.letterButton:hover:not(.used) {
+    background: #ddd;
+}
+
+.used {
+    opacity: 0.3;
+    background: linear-gradient(-45deg,#fff 49%,#000 49%, #000 51%,#fff 51%)
+}
