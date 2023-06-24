@@ -6,17 +6,19 @@ import styles from './page.module.css'
 import { useEffect, useState } from 'react';
 import LetterButton from './LetterButton';
 import { Scenario, Option } from '@/types';
+import Spinner from './Spinner';
 
 export default function Home() {
   const [scenarios, setScenarios] = useState<Scenario[]>([]);
   const [scenario, setScenario] = useState<Scenario | null>(null);
-  const [won, setWon] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const newScenario = () => {
-    setWon(false);
+    setLoading(true);
     fetch('/api/scenario').then(res => res.json()).then(data => {
       setScenario(data);
       setScenarios([data]);
+      setLoading(false);
     })
   };
 
@@ -32,13 +34,15 @@ export default function Home() {
     const body = {
       scenarios: newScenarios,
     }
+    setLoading(true);
     fetch('/api/scenario', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     }).then(res => res.json()).then((newScenario: Scenario) => {
       setScenario(newScenario);
-      setScenarios([...newScenarios, newScenario])
+      setScenarios([newScenario, ...newScenarios])
+      setLoading(false);
     })
   }
 
@@ -72,6 +76,7 @@ export default function Home() {
           </div>
         )}
       </div>
+      <Spinner loading={loading}/>
     </main>
   )
 
