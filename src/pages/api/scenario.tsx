@@ -16,9 +16,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   } else if (req.method === 'POST') {
     var messages: ChatCompletionRequestMessage[] = [];
 
-    messages.push({ "role": ChatCompletionRequestMessageRoleEnum.System, "content": "You are a choose-your-own adventure game." });
+    messages.push({ "role": ChatCompletionRequestMessageRoleEnum.System, "content": "You are a choose-your-own adventure game. The game should be entertaining, silly and include puns." });
     req.body.scenarios.map((scenario: Scenario) => {
-      // const optionString = scenario.options.map( (option:types.Option, idx:number) => String.fromCharCode(65+idx)+') ' + option + '\n');
       const optionString = scenario.options.join('\n');
 
       messages.push({
@@ -30,7 +29,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         "content": scenario.chosenOption || 'No option chosen'
       });
     })
-    messages.splice(2, 0, { "role": ChatCompletionRequestMessageRoleEnum.User, "content": "You are now a comedian, and give hilarious scenarios and options for the user in this choose-your-own adventure game." })
     console.log("Input messages:", messages);
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
