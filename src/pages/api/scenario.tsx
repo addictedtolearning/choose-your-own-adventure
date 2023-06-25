@@ -6,11 +6,21 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+if(!process.env.PROMPT_DESCRIPTION) {
+  throw new Error("Need to set environment variable: PROMPT_DESCRIPTION")
+}
+if(!process.env.PROMPT_OPTION_1) {
+  throw new Error("Need to set environment variable: PROMPT_OPTION_1")
+}
+if(!process.env.PROMPT_OPTION_2) {
+  throw new Error("Need to set environment variable: PROMPT_OPTION_2")
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     const scenario = {
-      "description": "You are invited to clown college in Sydney.",
-      "options": ["A) Accept the invitation and become a clown", "B) Refuse the invitation, and instead become a DJ."]
+      "description": process.env.PROMPT_DESCRIPTION,
+      "options": [process.env.PROMPT_OPTION_1, process.env.PROMPT_OPTION_2]
     }
     res.status(200).json(scenario)
   } else if (req.method === 'POST') {
