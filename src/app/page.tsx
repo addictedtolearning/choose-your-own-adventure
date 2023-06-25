@@ -27,7 +27,7 @@ export default function Home() {
       throw new Error("No scenario?");
     var newScenario = { ...scenario, chosenOption: option }
     var newScenarios = scenarios.slice();
-    newScenarios[0] = newScenario;
+    newScenarios[newScenarios.length - 1] = newScenario;
     setScenario(null);
     setScenarios(newScenarios);
 
@@ -41,7 +41,7 @@ export default function Home() {
       body: JSON.stringify(body)
     }).then(res => res.json()).then((newScenario: Scenario) => {
       setScenario(newScenario);
-      setScenarios([newScenario, ...newScenarios])
+      setScenarios([...newScenarios, newScenario])
       setLoading(false);
     })
   }
@@ -52,8 +52,8 @@ export default function Home() {
     <main className={styles.main}>
       <h1 className={styles.heading}>CYOA</h1>
       <div className={styles.scenarioList}>
-        {scenarios.map((scenario: Scenario, idx: number) =>
-          <div key={idx} className={styles.scenario}>
+        {scenarios.slice().reverse().map((scenario: Scenario, idx: number) =>
+          <div key={scenario.description} className={styles.scenario}>
             <p>
               {scenario.description}
             </p>
@@ -76,7 +76,7 @@ export default function Home() {
           </div>
         )}
       </div>
-      <Spinner loading={loading}/>
+      <Spinner loading={loading} />
     </main>
   )
 
