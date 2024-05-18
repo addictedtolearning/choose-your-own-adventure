@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
     console.log("Input messages:", messages);
     const completion = await openai.createChatCompletion({
-      model: "gpt-4o",
+      model: "gpt-3.5-turbo",
       messages,
     });
 
